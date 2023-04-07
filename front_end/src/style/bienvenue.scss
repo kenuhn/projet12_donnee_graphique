@@ -1,0 +1,25 @@
+.bienvenue {
+    grid-area: 1 / 1 / 2 / 3; 
+    align-self: center;
+    &_name{
+        margin: 0;
+        margin-left: 10px;
+        color: red;
+        width: fit-content;
+    }
+}
+h1{
+
+    font-weight: 500;
+    font-size: 48px;
+    display: flex;
+    margin: 0;
+}
+
+.petitGraph {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+

@@ -1,0 +1,30 @@
+.header {
+    grid-area: 1 / 1 / 2 / 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    color: white;
+    margin: 0;
+   
+}
+.logo {
+    height: 57px;
+    margin: 20px;
+}
+.navbare {
+    margin: 0;
+    width: 75%;
+    
+    &_liste {
+        list-style: none;
+        display: flex;
+        justify-content: space-around;
+        margin : 0;
+    }
+}
+a {
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+  }

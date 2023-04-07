@@ -54,7 +54,7 @@ This project includes four endpoints that you will be able to use:
 - `http://localhost:3000/user/${userId}/activity` - retrieves a user's activity day by day with kilograms and calories.
 - `http://localhost:3000/user/${userId}/average-sessions` - retrieves the average sessions of a user per day. The week starts on Monday.
 - `http://localhost:3000/user/${userId}/performance` - retrieves a user's performance (energy, endurance, etc.).
-
+ 
 
 **Warning, currently only two users have been mocked. They have userId 12 and 18 respectively.**
 

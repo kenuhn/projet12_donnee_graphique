@@ -1,0 +1,46 @@
+.barChart {
+    &_contenant{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    
+}
+
+.header_barchart {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 60px 0px 60px;
+}
+
+.legende {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 250px;
+    &_contenant {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        align-items: center;
+       
+    }
+
+    &_carreNoir,  &_carreRouge {
+        border:solid #282D30;
+        background: #282D30;
+        height: 4px;
+        width: 4px;
+        border-radius: 100%;
+        margin-right: 10px;
+    }
+    &_carreRouge{
+        border: solid red;
+        background: red;
+    }
+}

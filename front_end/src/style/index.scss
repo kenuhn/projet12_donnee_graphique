@@ -1,0 +1,68 @@
+@import 'navBare.scss';
+@import 'aside.scss';
+@import 'bienvenue.scss';
+@import './pages/acceuil.scss';
+@import './barChart.scss';
+@import './pages/chemin.scss';
+html, body, .App, #root{
+ margin: 0;
+ height: 100%;
+ font-family: 'Roboto', sans-serif;
+}
+
+.App {
+  display: grid;
+  grid-template-columns: 10% 1fr;
+  grid-template-rows: 82px 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px; 
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.domain{
+  stroke-linecap: round;
+}
+@media screen and (min-width: 1285px){
+
+  .aside{
+    height: 850px;
+  }
+
+
+
+}
+@media screen and (max-width: 1285px){
+  .acceuil {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 200px repeat(3, 320px);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;          
+}
+  .petitGraph {
+      grid-area:  3 / 1 / 4 / 2; 
+      padding-left: 30px;
+      padding-right: 30px;
+  }
+  .bienvenue{
+      margin-left: 30px;
+  }
+  .infos {
+      grid-area: 4 / 1 / 5 / 2;
+      width: 892px;
+      height:auto;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+      align-content: space-between; 
+      margin-bottom: 30px;
+      
+  }
+  .barChart_contenant {
+  justify-self: center;
+  }
+}

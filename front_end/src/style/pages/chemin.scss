@@ -1,0 +1,26 @@
+.chemin {
+    margin-left: -50px;
+    grid-area:  1 / 1 / 4 / 3;
+    align-self: end;
+    justify-self: center;
+    width: 700px;
+    height: 600px;
+    color: black;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+
+     &_lien{
+        padding-top: 10px;
+        color: white;
+        width: 270px;
+        height: 270px;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        background: linear-gradient(to bottom, #333333, #555555);
+
+     }
+}
