@@ -22,7 +22,9 @@ const FetchUserInfos = (userId) => {
   }, [id]);
 
   if (!isLoading) {
-    console.log(profile)
+    if(profile === "can not get user") {
+      return "error"
+    }
     return profile;
   }
   if (error) {

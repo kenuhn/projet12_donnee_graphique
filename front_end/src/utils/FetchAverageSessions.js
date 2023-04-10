@@ -14,6 +14,7 @@ const FetchAverageSessions = (userId) => {
         const data = await response.json();
 
         setAverageSessions(data);
+      
         setIsLoading(false);
       } catch (err) {
         setIsLoading(true);
@@ -22,10 +23,19 @@ const FetchAverageSessions = (userId) => {
     }
     fetchSession();
   }, [id]);
-
+  console.log(averageSession)
   if (Load === false) {
-    return averageSession.data.sessions;
-  } if(error) {
+    if(averageSession === "can not get user" || averageSession === null) {
+      return "error"
+    } else {
+       return averageSession.data.sessions;
+    }
+  } 
+
+  if (Load) {
+    return "error"
+  }
+  if(error) {
     console.log(error)
     return "error";
   }

@@ -14,20 +14,22 @@ import SessionMoyenneGraphique from "../component/sessionMoyenne.js/sessionMoyen
 import FetchRadar from "../utils/FetchRadar";
 import PerformanceGraphique from "../component/performance/Performance";
 import CercleGraphque from "../component/cercle/cercleMetric";
+import NotFound from "./notFound";
   const Acceuil = () => {
 
     const { id } = useParams();
     const profile = FetchUserInfos(id);
     const Activity = FetchActivity(id);
     const AverageSessions = FetchAverageSessions(id);
+    console.log(AverageSessions)
     const performance = FetchRadar(id);
     if (
-      profile === "error" &&
-      Activity === "error" &&
-      AverageSessions === "error" &&
+      profile === "error" ||
+      Activity === "error" ||
+      AverageSessions === "error" ||
       performance === "error"
     ) {
-      <div>...Loading</div>;
+     return <NotFound />
     } else {
       if (profile && Activity && AverageSessions && performance) {
         const dataProfile = profile.data;

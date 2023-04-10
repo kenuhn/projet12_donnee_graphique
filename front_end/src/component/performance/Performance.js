@@ -3,9 +3,9 @@ import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadius
 
 
   const Performance = (props) => {
-    const data =  props.PerformanceData
+     const data =  props.PerformanceData
      const kind = data.kind 
-    const newData = data.data.map((el, index) => {return {
+     const newData = data.data.map((el, index) => {return {
       ...el, kind: kind[index +1] }}).reverse()
     
   /*   

@@ -15,10 +15,10 @@ const FetchRadar = (userId) => {
             try {
                 const response = await  fetch(`http://localhost:3000/user/${id}/performance/`)
                 const data = await response.json()
-                /* setIsLoading(false) */
+                setIsLoading(false) 
                 setData(data)
             } catch(err) {
-               /*   setIsLoading(true) */
+                  setIsLoading(true) 
                  setError(err)
             } 
         }
@@ -33,7 +33,7 @@ const FetchRadar = (userId) => {
       
       if (Loading) {
         console.log("loading")
-        return "loading...";
+        return "error";
       }
     
       if (performance !== null) {

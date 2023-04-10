@@ -13,7 +13,6 @@ const FetchActivity = (userId) => {
         try {
           const reponse = await fetch(`http://localhost:3000/user/${id}/activity/`);
           const data = await reponse.json();
-         
           setIsLoading(false);
           setData(data);
         } catch (error) {
