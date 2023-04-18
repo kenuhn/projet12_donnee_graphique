@@ -1,5 +1,6 @@
 import React from 'react';
 
+//content of health data in the right of the page 
 const Health = (props) => {
     const infosNombre = props.infos
     const composant = props.composant

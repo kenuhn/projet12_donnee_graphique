@@ -15,6 +15,8 @@ import FetchRadar from "../utils/FetchRadar";
 import PerformanceGraphique from "../component/performance/Performance";
 import CercleGraphque from "../component/cercle/cercleMetric";
 import NotFound from "./notFound";
+
+// Home page call different fetch to give data in each components
   const Acceuil = () => {
 
     const { id } = useParams();

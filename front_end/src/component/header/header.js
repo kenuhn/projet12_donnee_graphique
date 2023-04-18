@@ -1,5 +1,7 @@
 import React from "react";
 import Logo from "../../images/logo.png"
+
+// Header of the page for the moment only "Accueil" pages is accessible
 const Header = () => {
 
   return (

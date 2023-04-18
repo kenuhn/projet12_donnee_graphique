@@ -1,5 +1,6 @@
 import React from "react";
 
+//this page allow to go in data visualition of each different user
 const Chemin = () => {
   return (
     <div className="acceuil">

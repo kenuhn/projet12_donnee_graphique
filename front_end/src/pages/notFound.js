@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+
+// Error page with home redirection
 const notFound = () => {
     return (
         <div  className="not_found">

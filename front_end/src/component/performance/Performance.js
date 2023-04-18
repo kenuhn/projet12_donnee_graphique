@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts'
 
+//Spider Chart that represent the performance of user with recharts 
 
   const Performance = (props) => {
      const data =  props.PerformanceData
@@ -8,10 +9,6 @@ import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadius
      const newData = data.data.map((el, index) => {return {
       ...el, kind: kind[index +1] }}).reverse()
     
-  /*   
-    */
-  
-    /* const kind = props.Performance.data.kind */
     const width = 270;
     const height = 270;
     return (
