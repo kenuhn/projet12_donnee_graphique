@@ -10,11 +10,11 @@ const DureeMoyenne = (props) => {
   useEffect(() => {
     const svg = d3.select(svgRef.current);
 
-    // Définition des dimensions du graphique
+    // Definition of the dimensions of the graph
     const margin = { top: 20, right: 20, bottom: 0, left: 40 },
       width = 835 - margin.left - margin.right,
       height = 200 - margin.top - margin.bottom;
-    // Définition de l'échelle en X (jours)
+    // Definition of the scale in X (days)
     const x = d3.scaleBand().domain(groups).range([0, width]).padding([0.5]);
     svg
       .append("g")
@@ -52,8 +52,6 @@ const DureeMoyenne = (props) => {
       .append("g")
       .attr("class", "lignePointille")
       .attr("fill", "gray")
-     /*  .attr("x1", 55)
-      .attr("x2", 735) */
       .call(
         d3
           .axisRight(yScalePoids)
@@ -68,7 +66,7 @@ const DureeMoyenne = (props) => {
       .select(".domain")
       .remove();
 
-    /* Ligne horizontal en pointillé */
+   /* Dotted horizontal line */
     const lignePointille = svg.selectAll(".lignePointille line")
     
     lignePointille
@@ -79,15 +77,14 @@ const DureeMoyenne = (props) => {
     
       const thirdLine = svg.selectAll(".lignePointille line")
       .filter(function(d, i) {
-        return i === 0; // index 2 pour la troisième ligne (l'index commence à 0)
+        return i === 0; // index 2 for the third line (index starts at 0)
       });
 
       thirdLine
       .style("stroke", "gray")
       .style("stroke-dasharray", "0")
      
-    
-     /*  .attr("transform", `translate(0, ${height})`) */
+  
     const xSubgroup = d3
       .scaleBand()
       .domain(subgroups)
@@ -101,7 +98,7 @@ const DureeMoyenne = (props) => {
 
 
   
-    // Création des barres pour chaque session
+    // Creation of bars for each session
     svg
       .append("g")
       .selectAll("g")
@@ -173,7 +170,8 @@ const DureeMoyenne = (props) => {
       })
       .attr("fill", (d) => color(d.key))
 
-    /* Gestion de l'animation au mouvement de la souris  */
+    /* Management of the animation with the movement of the mouse */
+
     const sousgroupe = d3.selectAll(".sousGroupe");
     sousgroupe
       .append("rect")
@@ -203,7 +201,8 @@ const DureeMoyenne = (props) => {
           .duration("150");
       });
 
-    /* petite encoche de définition des prix */
+        /* small notch for price definition */
+
     sousgroupe
       .append("rect")
       .attr("class", (d, i) => "sousGroupeInfos" + i)

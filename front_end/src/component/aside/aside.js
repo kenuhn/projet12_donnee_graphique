@@ -1,4 +1,6 @@
 import React from "react";
+
+//Side bar 
 const aside = () => {
   console.log(`${process.env.REACT_APP_ADRESSE}/front_end/src/images/dumbbell-icon.svg`)
   return (

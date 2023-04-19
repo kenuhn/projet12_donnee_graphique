@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useRef } from "react";
 import * as d3 from "d3";
+
+// graphic that represent the achievement of the objective in the week
 const CercleMetric = (props) => {
   let amelioration;
 
@@ -39,11 +41,13 @@ const CercleMetric = (props) => {
       .attr("d", arc.startAngle(twoPi))
       .attr("transform", "translate(" + 135 + "," + 140 + ")")
       .attr("fill", "white");
+      
     var foreground = meter
       .append("path")
       .attr("class", "foreground")
       .attr("transform", "translate(" + 135 + "," + 140 + ")")
       .attr("fill", "red");
+
     var percentComplete = meter
       .append("text")
       .attr("text-anchor", "middle")
@@ -52,7 +56,7 @@ const CercleMetric = (props) => {
       .attr("transform", "translate(" + 135 + "," + height / 2 + ")")
       .style("font-size", "20px");
 
-      var titre = meter
+     var titre = meter
       .append("text")
       .attr("text-anchor", "middle")
       .attr("class", "description")
@@ -61,6 +65,7 @@ const CercleMetric = (props) => {
       .attr("transform", "translate(" + 50 + "," + 10 + ")")
       .style("font-size", "15px");
 
+    /* description is seperated in two part 1: "de votre" 2: "objecif"*/
     var description = meter
       .append("text")
       .attr("text-anchor", "middle")
@@ -69,9 +74,9 @@ const CercleMetric = (props) => {
       .attr("dy", "2.3em")
       .text("de votre")
       .attr("transform", "translate(" + 135 + "," + 118 + ")")
-      .style("font-size", "15px");
+      .style("font-size", "15px"); 
 
-    var description = meter
+     var description = meter
       .append("text")
       .attr("text-anchor", "middle")
       .attr("fill", "gray")
@@ -79,7 +84,7 @@ const CercleMetric = (props) => {
       .attr("dy", "2.3em")
       .text("objectif")
       .attr("transform", "translate(" + 135 + "," + 135+ ")")
-      .style("font-size", "15px");
+      .style("font-size", "15px"); 
 
     var i = d3.interpolate(progress, allocated / total);
 

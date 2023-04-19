@@ -17,16 +17,15 @@ const SessionMoyenneGraphique = (props) => {
       width = 270 - margin.left - margin.right,
       height = 270 - margin.top - margin.bottom;
 
-    /*    const bandWidth = width / 7; */
     const x = d3
       .scaleBand()
       .domain(groups)
       .range([0, width])
       .padding(0.5)
-      .paddingOuter(0.5); ///* .padding(0, 2) */;
+      .paddingOuter(0.5); 
 
-    //Affiche l'axe X sans la barre horizontal
-    svg
+  //Displays the X axis without the horizontal bar  
+   svg
       .append("g")
       .attr("transform", `translate(0, ${height})`)
       .call(d3.axisBottom(x).tickPadding(10).tickSize(0))
@@ -50,10 +49,10 @@ const SessionMoyenneGraphique = (props) => {
       .style("font-size", "16px")
       .text("sessions");
 
-    //Modifie la couleur du texte
+    //Modifies the text color
     svg.selectAll("text").attr("fill", "white").attr("opacity", "0.5");
 
-    // Affiche l'axe X tourne vers la gauche les ticks pour ne pas les afficher dans le svg
+    // Display the X axis turn to the left the ticks to not display them in the svg
     const y = d3
       .scaleLinear()
       .domain([0, d3.max(session)])
@@ -70,7 +69,7 @@ const SessionMoyenneGraphique = (props) => {
 
     const curve = d3.curveCardinal.tension(0.1);
 
-    // Ajout de la ligne de donnée
+    // Adding the data line
     svg
       .append("path")
       .datum(newSessionMoyenne)
@@ -97,9 +96,9 @@ const SessionMoyenneGraphique = (props) => {
       )
       .selectAll("d");
 
-    //créer d'une ligne écouteuse d'évenements
-
-    //Création de l'animation recatangle
+    //create an event listener line
+    //Creation of the recatangle animation      
+   
     var rectangleAnime = svg
       .append("g")
       .attr("id", "rectangleAnime")
@@ -113,19 +112,20 @@ const SessionMoyenneGraphique = (props) => {
       .style("opacity", "0.3")
       .style("stroke-width", "1");
 
-    // Création d'un groupe qui contiendra tout le tooltip plus le cercle de suivi
+   // Create a group that will contain all the tooltip plus the follow-up circle
+
     var tooltip = svg
       .append("g")
       .attr("id", "tooltip")
       .style("display", "none");
 
-    // Le cercle extérieur bleu clair
+    // The light blue outer circle
     tooltip.append("circle").attr("fill", "#CCE5F6").attr("r", 5);
 
-    // Le cercle intérieur bleu foncé
+    // The dark blue inner circle
 
-    // Le tooltip en lui-même avec sa pointe vers le bas
-    // Il faut le dimensionner en fonction du contenu
+    // The tooltip itself with its point downwards
+    // It must be sized according to the content      
     tooltip
       .append("rect")
       .attr("width", 40)
@@ -133,7 +133,7 @@ const SessionMoyenneGraphique = (props) => {
       .style("fill", "#fafafa")
       .attr("transform", "translate(5, -50)");
 
-    // Cet élément contiendra tout notre texte
+    // This element will contain all our text
     var text = tooltip
       .append("text")
       .style("font-size", "13px")
@@ -142,7 +142,7 @@ const SessionMoyenneGraphique = (props) => {
       .style("fill", "#333333")
       .attr("transform", "translate(8, -60)");
 
-    // Element pour la date avec positionnement spécifique
+    // Element for the date with specific positioning
     text.append("tspan").attr("dx", "-5").attr("id", "tooltip-date");
 
     text
@@ -154,8 +154,8 @@ const SessionMoyenneGraphique = (props) => {
       .attr("dy", "27")
       .attr("dx", "-1");
 
-    // Le texte pour la valeur de l'or à la date sélectionnée
-
+    
+    // The text for the value of gold on the selected date
     svg
 
       .append("rect")
@@ -185,7 +185,6 @@ const SessionMoyenneGraphique = (props) => {
           tooltip.style("display", "block");
           d3.select("#tooltip-close").text(closestBand.sessionLength + "min");
         }
-        /*  */
       })
       .on("mouseleave", (event) => {
         rectangleAnime.style("display", "none");

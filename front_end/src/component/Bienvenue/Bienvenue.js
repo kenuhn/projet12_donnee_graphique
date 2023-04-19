@@ -1,4 +1,5 @@
 import React from 'react';
+//welwome component 
 const Bienvenue = (props) => {
     const firstName = props.firstName
     console.log(firstName)
