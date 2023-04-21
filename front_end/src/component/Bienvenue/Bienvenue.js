@@ -1,8 +1,12 @@
 import React from 'react';
-//welwome component 
+/**
+ * Composant react de bienvenue
+ * @param {Object>string} props 
+ * @returns {JSX.Element} Affiche bienvenue suivi du de l'utilisateur
+ */
+
 const Bienvenue = (props) => {
     const firstName = props.firstName
-    console.log(firstName)
    
     return (
         <div className="bienvenue">

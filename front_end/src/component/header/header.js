@@ -1,7 +1,10 @@
 import React from "react";
 import Logo from "../../images/logo.png"
 
-// Header of the page for the moment only "Accueil" pages is accessible
+/**
+ * Représente le header  avec le logo du site
+ * @returns {JSX.Element} - Le header avec une liste des pages ou naviguer 
+ */
 const Header = () => {
 
   return (

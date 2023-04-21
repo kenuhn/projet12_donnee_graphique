@@ -2,14 +2,20 @@ import React, { useEffect } from "react";
 import { useRef } from "react";
 import * as d3 from "d3";
 
-// graphic that represent the achievement of the objective in the week
+/**
+ * Composant React pour afficher un cercle de score.
+ * @param {CercleMetricProps} props - Les propriétés du composant.
+ * @returns {JSX.Element} - Le composant.
+ */
+
 const CercleMetric = (props) => {
   let amelioration;
-
-  if (props.id.data.score) {
-    amelioration = props.id.data.score * 100;
+  const score = props.dataUserInfos.score
+  const todayScore = props.dataUserInfos.todayScore 
+  if (score) {
+    amelioration = score * 100;
   } else {
-    amelioration = props.id.data.todayScore * 100;
+    amelioration = todayScore * 100;
   }
 
   const svgRef = useRef();

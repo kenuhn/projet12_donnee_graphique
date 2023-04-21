@@ -1,6 +1,11 @@
 import React from "react";
 
-//this page allow to go in data visualition of each different user
+/**
+
+React component that displays links to select different users
+@function
+@returns {JSX.Element} - Rendered component
+*/
 const Chemin = () => {
   return (
     <div className="acceuil">

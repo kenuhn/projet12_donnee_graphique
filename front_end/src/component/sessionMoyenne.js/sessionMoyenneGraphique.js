@@ -1,9 +1,16 @@
 import React, { useRef, useEffect } from "react";
 
 import * as d3 from "d3";
+/**
+
+    Component affichant un graphique de la durée moyenne des sessions par jour
+    @param {Object} props - Les propriétés du component
+    @param {Object[]} props.test.sessions - Les sessions testées
+    */
 
 const SessionMoyenneGraphique = (props) => {
-  const sessionMoyenne = props.test;
+
+  const sessionMoyenne = props.test.sessions;
   const groups = ["L", "M", "M ", "J", "V", "S", "D"];
   const newSessionMoyenne = sessionMoyenne.map((el, index) => {
     return { ...el, day: groups[index] };
@@ -13,6 +20,11 @@ const SessionMoyenneGraphique = (props) => {
 
   useEffect(() => {
     const svg = d3.select(svgRef.current);
+    /**
+ * Les marges du graphique
+ * @type {{ top: number, bottom: number, right: number, left: number }}
+ */
+
     const margin = { top: 20, bottom: 20, right: 0, left: 0 },
       width = 270 - margin.left - margin.right,
       height = 270 - margin.top - margin.bottom;

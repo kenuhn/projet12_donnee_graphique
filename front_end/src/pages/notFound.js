@@ -2,7 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-// Error page with home redirection
+/**
+
+Component displaying a 404 error page.
+@component
+@return {JSX.Element} 404 error page UI.
+*/
 const notFound = () => {
     return (
         <div  className="not_found">

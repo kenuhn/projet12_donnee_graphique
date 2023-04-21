@@ -1,6 +1,9 @@
 import React from "react";
 
-//Side bar 
+/**
+    Represents an aside component with a list of images and links.
+    @returns {JSX.Element} The aside component.
+    */
 const aside = () => {
   console.log(`${process.env.REACT_APP_ADRESSE}/front_end/src/images/dumbbell-icon.svg`)
   return (

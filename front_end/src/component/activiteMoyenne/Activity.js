@@ -1,7 +1,14 @@
 import React, { useRef, useEffect } from "react";
 import * as d3 from "d3";
+import Proptypes from "prop-types"
+/**
+@param {Object} props - Properties of the component
+@param {Object[]} props.Activity.sessions -User activity sessions
+@returns {JSX.Element} Component of the average duration of an activity session for each day of the week
+*/
+
 const DureeMoyenne = (props) => {
-  const activiteMoyenne = props.Activity;
+  const activiteMoyenne = props.Activity.sessions;
   const groups = activiteMoyenne.map((d) => d.day.slice(-1));
   const subgroups = Object.keys(activiteMoyenne[0]).slice(1);
   const tabKilogram = activiteMoyenne.map((el) => el.kilogram);
@@ -10,22 +17,25 @@ const DureeMoyenne = (props) => {
   useEffect(() => {
     const svg = d3.select(svgRef.current);
 
-    // Definition of the dimensions of the graph
+/**
+* Définition des dimensions du graphique
+* @type {{top: number, right: number, bottom: number, left: number}}
+*/
+
     const margin = { top: 20, right: 20, bottom: 0, left: 40 },
       width = 835 - margin.left - margin.right,
       height = 200 - margin.top - margin.bottom;
-    // Definition of the scale in X (days)
+
     const x = d3.scaleBand().domain(groups).range([0, width]).padding([0.5]);
     svg
       .append("g")
       .attr("transform", `translate(0, ${height})`)
-     
+
       .call(d3.axisBottom(x).tickPadding(10).tickSize(0))
       .select("path")
       .attr("stroke", "gray")
-      
+
       .remove();
-     
 
     const yScalePoids = d3
       .scaleLinear()
@@ -46,8 +56,8 @@ const DureeMoyenne = (props) => {
       });
       return nPlusPetit;
     }
-    const tab = tabKilogram.filter((i) => i !== d3.min(tabKilogram));
 
+    const tab = tabKilogram.filter((i) => i !== d3.min(tabKilogram));
     svg
       .append("g")
       .attr("class", "lignePointille")
@@ -66,39 +76,28 @@ const DureeMoyenne = (props) => {
       .select(".domain")
       .remove();
 
-   /* Dotted horizontal line */
-    const lignePointille = svg.selectAll(".lignePointille line")
-    
+    const lignePointille = svg.selectAll(".lignePointille line");
     lignePointille
       .style("stroke", "gray")
       .style("stroke-dasharray", "2.4")
       .attr("x1", 59)
-      .attr("x2", 710)
-    
-      const thirdLine = svg.selectAll(".lignePointille line")
-      .filter(function(d, i) {
-        return i === 0; // index 2 for the third line (index starts at 0)
+      .attr("x2", 710);
+
+    const thirdLine = svg
+      .selectAll(".lignePointille line")
+      .filter(function (d, i) {
+        return i === 0; 
       });
 
-      thirdLine
-      .style("stroke", "gray")
-      .style("stroke-dasharray", "0")
-     
-  
+    thirdLine.style("stroke", "gray").style("stroke-dasharray", "0");
+
     const xSubgroup = d3
       .scaleBand()
       .domain(subgroups)
       .range([0, x.bandwidth()])
       .padding([0.5]);
 
-    const color = d3
-      .scaleOrdinal()
-      .domain(subgroups)
-      .range(["black", "red"]);
-
-
-  
-    // Creation of bars for each session
+    const color = d3.scaleOrdinal().domain(subgroups).range(["black", "red"]);
     svg
       .append("g")
       .selectAll("g")
@@ -106,7 +105,6 @@ const DureeMoyenne = (props) => {
       .join("g")
       .attr("class", "sousGroupe2")
       .attr("transform", (d) => `translate(${x(d.day.slice(-1))}, 10)`)
-
       .selectAll("rect")
       .data(function (d) {
         return subgroups.map(function (key) {
@@ -114,7 +112,6 @@ const DureeMoyenne = (props) => {
         });
       })
       .join("rect")
-    
       .attr("class", "barre2")
       .attr("x", (d) => xSubgroup(d.key))
       .attr("y", (d) => {
@@ -124,17 +121,17 @@ const DureeMoyenne = (props) => {
           return yScalePoids(d.value);
         }
       })
-      .attr("width", xSubgroup.bandwidth() -2)
+      .attr("width", xSubgroup.bandwidth() - 2)
       .attr("height", (d) => {
         if (d.key === "calories") {
-          return 180 - yScaleCalories(d.value) -10;
+          return 180 - yScaleCalories(d.value) - 10;
         } else {
-          return 180 - yScalePoids(d.value) -10 ;
+          return 180 - yScalePoids(d.value) - 10;
         }
       })
-      .attr("fill", (d) => color(d.key))
-      //Barre arrondi
-      svg
+      .attr("fill", (d) => color(d.key));
+    
+    svg
       .append("g")
       .selectAll("g")
       .data(activiteMoyenne)
@@ -152,7 +149,7 @@ const DureeMoyenne = (props) => {
       .attr("rx", 4)
       .attr("ry", 4)
       .attr("class", "barre")
-      .attr("x", (d) => xSubgroup(d.key) )
+      .attr("x", (d) => xSubgroup(d.key))
       .attr("y", (d) => {
         if (d.key === "calories") {
           return yScaleCalories(d.value);
@@ -160,17 +157,15 @@ const DureeMoyenne = (props) => {
           return yScalePoids(d.value);
         }
       })
-      .attr("width", xSubgroup.bandwidth() -1.9)
+      .attr("width", xSubgroup.bandwidth() - 1.9)
       .attr("height", (d) => {
         if (d.key === "calories") {
-          return 180 - yScaleCalories(d.value) ;
+          return 180 - yScaleCalories(d.value);
         } else {
-          return 180 - yScalePoids(d.value)  ;
+          return 180 - yScalePoids(d.value);
         }
       })
-      .attr("fill", (d) => color(d.key))
-
-    /* Management of the animation with the movement of the mouse */
+      .attr("fill", (d) => color(d.key));
 
     const sousgroupe = d3.selectAll(".sousGroupe");
     sousgroupe
@@ -200,8 +195,6 @@ const DureeMoyenne = (props) => {
           .attr("opacity", "0")
           .duration("150");
       });
-
-        /* small notch for price definition */
 
     sousgroupe
       .append("rect")
