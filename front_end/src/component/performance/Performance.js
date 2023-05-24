@@ -13,15 +13,12 @@ import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadius
 
   const Performance = (props) => {
      const data =  props.PerformanceData
-     const kind = data.kind 
-     const newData = data.data.map((el, index) => {return {
-      ...el, kind: kind[index +1] }}).reverse()
     
     const width = 270;
     const height = 270;
     return (
       <div style={{ width: `${width}px`, height: `${height}px` }}>
-      <RadarChart width={width} height={height} cx="50%" cy="50%" style={{backgroundColor: "#282A30", borderRadius:5}} outerRadius="70%" data={newData}>
+      <RadarChart width={width} height={height} cx="50%" cy="50%" style={{backgroundColor: "#282A30", borderRadius:5}} outerRadius="70%" data={data}>
         <PolarGrid radialLines={false} stroke="#FFFFFF" /> 
         <PolarAngleAxis dataKey="kind" tick={{ fill: '#fff', }} style={{transform: "translate(2px, -7px) scaleY(1.1)", fontSize: "11px"}}/>
         <PolarRadiusAxis tick={false} axisLine={false} stroke="#FFFFFF"/> 

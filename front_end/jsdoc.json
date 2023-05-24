@@ -1,10 +1,14 @@
 {
     "source": {
-      "include": ["src"],
+      "include": ["/Users/kenuhnrimbert/Documents/formation-openclassroom-2/p12-openclassoom/front_end/src"],
       "exclude": ["node_modules"]
     },
-    "opts": {
-      "destination": "docs"
+    "plugins": [
+		"plugins/markdown"
+	],
+    "opts": {  
+        "destination": "./jsdoc",          
+        "recurse": true
     }
   }
   

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: App.js</title>
+    <title>JSDoc: Source: index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: App.js</h1>
+    <h1 class="page-title">Source: index.js</h1>
 
     
 
@@ -26,34 +26,28 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from "react";
-import { Routes, Route } from "react-router-dom";
-import Header from "./component/header/header";
-import Aside from "./component/aside/aside";
-import Acceuil from "./pages/Acceuil";
-import Chemin from "./pages/Chemin";
-import NotFound from "./pages/notFound";
-
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import ReactDOM from 'react-dom/client';
+import '../src/style/index.scss'
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router} from "react-router-dom";
 /**
-    Component representing the main App.
-    @returns {JSX.Element} The App component.
+    fonctions index qui contient l'application .
+    @returns {RenderingContext} The App.
 */
 
-function App() {
-  return (
-    &lt;div className="App">
-      &lt;Header />
-      &lt;Routes>
-        &lt;Route path="/:id" element={&lt;Acceuil />} />
-        &lt;Route path="/" element={&lt;Chemin />} />
-        &lt;Route path="*" element={&lt;NotFound />} />
-      &lt;/Routes>
-      &lt;Aside />
-    &lt;/div>
-  );
-}
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  &lt;Router>
+    &lt;App />
+  &lt;/Router>
+);
 
-export default App;
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
 </code></pre>
         </article>
     </section>

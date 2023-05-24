@@ -4,6 +4,10 @@ import '../src/style/index.scss'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router} from "react-router-dom";
+/**
+    fonctions index qui contient l'application .
+    @returns {RenderingContext} The App.
+*/
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

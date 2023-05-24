@@ -1,7 +1,7 @@
 import React from 'react';
 /**
  * Composant react de bienvenue
- * @param {Object>string} props 
+ * @param {Object} props 
  * @returns {JSX.Element} Affiche bienvenue suivi du de l'utilisateur
  */
 

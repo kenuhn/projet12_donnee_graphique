@@ -12,7 +12,7 @@ import PerformanceGraphique from "../component/performance/Performance";
 import CercleGraphque from "../component/cercle/cercleMetric";
 import NotFound from "./notFound";
 import fetchApi from "../service/FetchApi"
-
+import FormatData from "../service/FormatData"
 
 /**
  * Component for displaying user homepage with activity data and health information.
@@ -41,17 +41,24 @@ import fetchApi from "../service/FetchApi"
         setActivity(Activity)
         setAverageSessions(AverageSession)
         setPerformance(Performance)
-       setUserInfos(userInfos) 
+        setUserInfos(userInfos) 
       }
 
       receptionData()
      
     }, [])
-console.log(dataUserInfos)
- if (dataActivity === "error" || dataAverageSessions === "error", dataPerformance === "error", dataUserInfos === "error") {
+
+ if (dataActivity === "error" || dataAverageSessions === "error" || dataPerformance === "error" || dataUserInfos === "error") {
   return <NotFound />
  } else  {
-  if(dataActivity, dataAverageSessions, dataPerformance, dataUserInfos) {
+  if(dataActivity && dataAverageSessions && dataPerformance && dataUserInfos) {
+   
+     const formatData = new FormatData(dataActivity, dataAverageSessions, dataPerformance, dataUserInfos)
+     const formatDataActivity = formatData.formatDataActivity()
+     const formatDataAverageSessions = formatData.formatDataAverageSessions()
+     const formatDataPerformance = formatData.formatDataPerformance()
+     const formatDataUserInfos =  formatData.formatDataUserInfos()
+    /*  console.log(formatDataActivity, formatDataAverageSessions, formatDataPerformance, formatDataUserInfos) */
   /**
    * Renders homepage with activity data and health information, or NotFound component if API data fetch fails.
    * @returns {JSX.Element} - The rendered component.
@@ -93,11 +100,11 @@ console.log(dataUserInfos)
             infos={dataUserInfos.data.keyData.lipidCount}
           />
         </div>  
-        <GraphiqueActivite Activity={dataActivity.data} />
+        <GraphiqueActivite Activity={formatDataActivity} />
         <div className="petitGraph">
-        <SessionMoyenneGraphique test={dataAverageSessions.data} />
-        <PerformanceGraphique PerformanceData={dataPerformance.data} />
-         <CercleGraphque dataUserInfos={dataUserInfos.data}/> 
+        <SessionMoyenneGraphique test={formatDataAverageSessions} />
+        <PerformanceGraphique PerformanceData={formatDataPerformance} />
+         <CercleGraphque dataUserInfos={formatDataUserInfos}/> 
         </div>
         </div> )
   }

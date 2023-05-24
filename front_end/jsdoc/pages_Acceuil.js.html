@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: pages/Acceuil.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: pages/Acceuil.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, {useEffect, useState} from "react";
+import { useParams } from "react-router-dom";
+import Bienvenue from "../component/Bienvenue/Bienvenue";
+import Health from "../component/Health/Health";
+import flamme from "../images/vignette/energy.svg";
+import proteines from "../images/vignette/chicken.svg";
+import glucides from "../images/vignette/apple.svg";
+import cheeseburger from "../images/vignette/cheeseburger.svg";
+import GraphiqueActivite from "../component/activiteMoyenne/Activity";
+import SessionMoyenneGraphique from "../component/sessionMoyenne.js/sessionMoyenneGraphique";
+import PerformanceGraphique from "../component/performance/Performance";
+import CercleGraphque from "../component/cercle/cercleMetric";
+import NotFound from "./notFound";
+import fetchApi from "../service/FetchApi"
+
+
+/**
+ * Component for displaying user homepage with activity data and health information.
+ * @component
+ */
+
+  const Acceuil =   () => {
+    const {id} = useParams()
+    const [dataActivity, setActivity] = useState(null)
+    const [dataAverageSessions, setAverageSessions] = useState(null)
+    const [dataPerformance, setPerformance] = useState(null)
+    const [dataUserInfos, setUserInfos] = useState(null)
+    const callData = new fetchApi()
+
+    useEffect( () => {
+        /**
+         * Fetches data for user homepage from API when component mounts.
+         * @async
+         * @function
+         */
+     async  function receptionData () {
+        const Activity = await callData.getActivity(id, true)
+        const AverageSession =  await callData.getAverageSessions(id, true)
+        const Performance = await callData.getPerformance(id, true)
+        const userInfos = await callData.getUserInfos(id, true) 
+        setActivity(Activity)
+        setAverageSessions(AverageSession)
+        setPerformance(Performance)
+       setUserInfos(userInfos) 
+      }
+
+      receptionData()
+     
+    }, [])
+console.log(dataUserInfos)
+ if (dataActivity === "error" || dataAverageSessions === "error", dataPerformance === "error", dataUserInfos === "error") {
+  return &lt;NotFound />
+ } else  {
+  if(dataActivity, dataAverageSessions, dataPerformance, dataUserInfos) {
+  /**
+   * Renders homepage with activity data and health information, or NotFound component if API data fetch fails.
+   * @returns {JSX.Element} - The rendered component.
+   */
+    
+    return (
+      &lt;div className="acceuil">
+        &lt;Bienvenue
+          key={"firstName"}
+          firstName={dataUserInfos.data.userInfos.firstName}
+        />
+        &lt;div className="infos">
+          &lt;Health
+            color={"#FD51811A"}
+            image={flamme}
+            unite={"kcal"}
+            composant={"calories"}
+            infos={dataUserInfos.data.keyData.calorieCount}
+          />
+          &lt;Health
+            color={"#4AB8FF1A"}
+            image={glucides}
+            unite={"g"}
+            composant={"proteines"}
+            infos={dataUserInfos.data.keyData.proteinCount}
+          />
+          &lt;Health
+            color={"#F9CE23"}
+            image={proteines}
+            unite={"g"}
+            composant={"glucides"}
+            infos={dataUserInfos.data.keyData.carbohydrateCount}
+          />
+          &lt;Health
+            color={"#FD51811A"}
+            image={cheeseburger}
+            unite={"g"}
+            composant={"lipides"}
+            infos={dataUserInfos.data.keyData.lipidCount}
+          />
+        &lt;/div>  
+        &lt;GraphiqueActivite Activity={dataActivity.data} />
+        &lt;div className="petitGraph">
+        &lt;SessionMoyenneGraphique test={dataAverageSessions.data} />
+        &lt;PerformanceGraphique PerformanceData={dataPerformance.data} />
+         &lt;CercleGraphque dataUserInfos={dataUserInfos.data}/> 
+        &lt;/div>
+        &lt;/div> )
+  }
+  
+ }
+
+};
+
+export default Acceuil;
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Acceuil">Acceuil</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#Bienvenue">Bienvenue</a></li><li><a href="global.html#CercleMetric">CercleMetric</a></li><li><a href="global.html#Chemin">Chemin</a></li><li><a href="global.html#DureeMoyenne">DureeMoyenne</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Health">Health</a></li><li><a href="global.html#Performance">Performance</a></li><li><a href="global.html#SessionMoyenneGraphique">SessionMoyenneGraphique</a></li><li><a href="global.html#aside">aside</a></li><li><a href="global.html#getActivity">getActivity</a></li><li><a href="global.html#getAverageSessions">getAverageSessions</a></li><li><a href="global.html#getPerformance">getPerformance</a></li><li><a href="global.html#getUserInfos">getUserInfos</a></li><li><a href="global.html#notFound">notFound</a></li><li><a href="global.html#root">root</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Apr 21 2023 17:47:34 GMT+0200 (heure d’été d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
